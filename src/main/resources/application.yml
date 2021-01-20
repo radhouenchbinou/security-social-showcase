@@ -1,0 +1,17 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          facebook:
+            client-id: 382414916398956
+            client-secret: b335d37b66d141f430d7ebf90b6cc6f2
+            scope:
+              - public_profile
+              - email
+              - pages_show_list
+              - read_page_mailboxes
+              - pages_messaging
+              - pages_read_engagement
+              - pages_manage_metadata
+              - pages_manage_posts
