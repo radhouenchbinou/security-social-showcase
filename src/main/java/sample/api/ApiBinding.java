@@ -11,15 +11,18 @@ import org.springframework.web.client.RestTemplate;
 public abstract class ApiBinding {
 
 	protected RestTemplate restTemplate;
+	protected RestTemplate restTemplateBIs;
 
 	public ApiBinding(String accessToken) {
 		this.restTemplate = new RestTemplate();
-		accessToken="EAAFbzekZCr2wBAPhHZAYpkGpPPmGBqr2upXUwPHiZCY0fk62E03rF96EnAR3YmhA7EFOGG6IUX55siX5Bsi6haVmaqgA6hQzIuirdxPgvyPGKlSksboIanHjUbN1GCjRyc2qel0ZCCLUMkOiCIZAAdc43J0Td8Hg22rzhCfAMkgZDZD";
-		if (accessToken != null) {
+		this.restTemplateBIs = new RestTemplate();
+			accessToken="EAAFbzekZCr2wBAAAcjCT6FR1ZBJlbnxt7Do8EP4hvk9NOyRZCjM9GALcy28gu529fknzUKKSZBmy2SXCeMhZCtFcnQWHWZCyOcWTezAzefIHaDExIOEuDUHy17yQbabSVY70bNesmBuPZCsP9UWZArSpZBN7yHAcD8MLw486vt3LoDAZDZD";
+
+		//if (accessToken != null) {
 			this.restTemplate.getInterceptors().add(getBearerTokenInterceptor(accessToken));
-		} else {
-			this.restTemplate.getInterceptors().add(getNoTokenInterceptor());
-		}
+	//	} else {
+	//		this.restTemplate.getInterceptors().add(getNoTokenInterceptor());
+	//	}
 	}
 	
 	private ClientHttpRequestInterceptor getBearerTokenInterceptor(String accessToken) {

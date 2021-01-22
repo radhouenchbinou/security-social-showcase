@@ -1,0 +1,20 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+         xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Facebook Demo</title>
+</head>
+
+<body>
+
+
+<th:block th:each="conversation : ${conversationsList}">
+    <h4 th:text="${conversation.id}">ID</h4>
+    <p th:text="${conversation.snippet}">MESSAGE</p>
+    <a th:href="@{/{idPage}/conversations/{idConv}(idConv=${conversation.id},idPage=${conversation.senders.getData()[1].getId()})}"><p th:text="${conversation.senders.getData()[0].getName()}"></p></a>
+    <p th:text="${conversation.unreadCount}">UNREAD COUNT</p>
+    <hr/>
+</th:block>
+</body>
+</html>

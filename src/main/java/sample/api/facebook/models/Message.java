@@ -1,20 +1,20 @@
-package sample.api.facebook;
+package sample.api.facebook.models;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 
 public class Message implements Serializable {
     private String id;
     private Profile from;
     private String message;
-    private String createdTIme;
+    private String created_time;
 
-    public String getCreatedTIme() {
-        return createdTIme;
+
+    public String getCreated_time() {
+        return created_time;
     }
 
-    public void setCreatedTIme(String createdTIme) {
-        this.createdTIme = createdTIme;
+    public void setCreated_time(String created_time) {
+        this.created_time = created_time;
     }
 
     public String getId() {

@@ -1,4 +1,4 @@
-package sample.api.facebook;
+package sample.api.facebook.models;
 
 import lombok.Data;
 

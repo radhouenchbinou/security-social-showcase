@@ -1,0 +1,17 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html 	xmlns="http://www.w3.org/1999/xhtml"
+         xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Facebook Demo</title>
+</head>
+
+<body>
+
+<h2>This Facebook pages belongs to <span th:text="${pageDetails.name}">NAME</span></h2>
+<h2>This Facebook pages belongs to <span th:text="${pageDetails.id}">ID</span></h2>
+
+<a th:href="@{/{id}/conversations(id=${pageDetails.id})}">show all conversations</a>
+
+</body>
+</html>

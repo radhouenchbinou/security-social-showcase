@@ -1,5 +1,7 @@
 package sample.api.facebook;
 
+import sample.api.facebook.models.Page;
+
 import java.io.Serializable;
 import java.util.List;
 
