@@ -6,7 +6,6 @@ import java.util.List;
 
 public class ConversationsList {
     private List<Conversation> data;
-    private String next;
     public List<Conversation> getData() {
         return data;
     }

@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import sample.api.facebook.ConversationsList;
 import sample.api.facebook.Facebook;
+import sample.api.facebook.MessagesList;
 import sample.api.facebook.PagesList;
 import sample.api.facebook.models.Conversation;
 import sample.api.facebook.models.Message;
@@ -38,12 +39,23 @@ public class FacebookService {
         return facebook.getPageDetails(page.getAccess_token());
     }
 
+    /**
+     *
+     * @param pageId
+     * @return
+     */
     public List<Conversation> fetchConversations(String pageId){
         Page page = fetchUserPages().stream().filter(p -> p.getId().equals(pageId)).findFirst().get();
         return facebook.getConversations(page.getAccess_token());
     }
 
-    public List<Message> fetchMessages(String conversationId, String pageId){
+    /**
+     *
+     * @param conversationId
+     * @param pageId
+     * @return
+     */
+    public MessagesList fetchMessages(String conversationId, String pageId){
         Page page = fetchUserPages().stream().filter(p -> p.getId().equals(pageId)).findFirst().get();
         return facebook.getMessages(conversationId, page.getAccess_token());
     }

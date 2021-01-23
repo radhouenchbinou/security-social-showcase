@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import sample.api.facebook.MessagesList;
 import sample.services.FacebookService;
 
 @Controller
@@ -15,7 +16,7 @@ public class ConversationsController {
     }
     /**
      *
-     * @param id
+     * @param id page id
      * @param model
      * @return
      */
@@ -33,7 +34,8 @@ public class ConversationsController {
      */
     @GetMapping("/{idPage}/conversations/{idConversation}")
     public String messages(@PathVariable("idPage") String idPage, @PathVariable("idConversation") String idConversation,Model model){
-        model.addAttribute("messages", facebookService.fetchMessages(idConversation,idPage));
+        MessagesList msgList = facebookService.fetchMessages(idConversation,idPage);
+        model.addAttribute("messages", msgList.getData());
         return "messages";
     }
 

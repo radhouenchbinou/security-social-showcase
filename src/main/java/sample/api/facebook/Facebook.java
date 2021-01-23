@@ -72,11 +72,11 @@ public class Facebook extends ApiBinding {
 	 * @param accessToken
 	 * @return
 	 */
-	public List<Message> getMessages(String conversationId, String accessToken){
+	public MessagesList getMessages(String conversationId, String accessToken){
 		HttpHeaders headers = new HttpHeaders();
 		headers.put(HttpHeaders.AUTHORIZATION, Arrays.asList("Bearer " + accessToken));
 		HttpEntity<String> httpEntity = new HttpEntity<>(headers);
-		return restTemplateBIs.exchange(GRAPH_API_BASE_URL+ "/"+conversationId+"/messages?fields=from,message,created_time", HttpMethod.GET, httpEntity, MessagesList.class).getBody().getData();
+		return restTemplateBIs.exchange(GRAPH_API_BASE_URL+ "/"+conversationId+"/messages?fields=from,message,created_time", HttpMethod.GET, httpEntity, MessagesList.class).getBody();
 	}
 
 }

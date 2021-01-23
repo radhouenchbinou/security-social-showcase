@@ -11,6 +11,8 @@ public class Conversation implements Serializable {
     private String snippet;
     private ProfilesList senders;
     private int unread_count;
+    private Paging paging;
+
 
     public int getUnreadCount() {
         return unread_count;
