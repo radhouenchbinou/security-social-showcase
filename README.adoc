@@ -1,4 +1,4 @@
-# Spring Security 5 OAuth2 with Facebook and Page management Using facebook Graph
+# Spring Security 5 OAuth2 with Facebook and Facebook Page administration Using facebook Graph API
 
 This sample application demonstrates how to use Spring Security 5's OAuth 2 client support to login with Facebook and consume the Facebook API using the access token obtained during login.
 
