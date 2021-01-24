@@ -13,6 +13,10 @@ public abstract class ApiBinding {
 	protected RestTemplate restTemplate;
 	protected RestTemplate restTemplateBIs;
 
+	/**
+	 *
+	 * @param accessToken
+	 */
 	public ApiBinding(String accessToken) {
 		this.restTemplate = new RestTemplate();
 		this.restTemplateBIs = new RestTemplate();
@@ -23,14 +27,23 @@ public abstract class ApiBinding {
 			this.restTemplate.getInterceptors().add(getNoTokenInterceptor());
 		}
 	}
-	
+
+	/**
+	 *
+	 * @param accessToken
+	 * @return
+	 */
 	private ClientHttpRequestInterceptor getBearerTokenInterceptor(String accessToken) {
 		return (request, bytes, execution) -> {
 			request.getHeaders().add("Authorization", "Bearer " + accessToken);
 			return execution.execute(request, bytes);
 		};
 	}
-	
+
+	/**
+	 *
+	 * @return
+	 */
 	private ClientHttpRequestInterceptor getNoTokenInterceptor() {
 		return (request, bytes, execution) -> {
 			throw new IllegalStateException("Can't access the Facebook API without an access token");

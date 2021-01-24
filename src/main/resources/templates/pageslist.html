@@ -10,7 +10,7 @@
 
 
 <th:block th:each="page : ${pagesList}">
-    <a th:href="@{/{id}(id=${page.id})}"><p th:text="${page.name}">MESSAGE</p></a>
+    <a th:href="@{/{id}/conversations(id=${page.id})}"><p th:text="${page.name}">MESSAGE</p></a>
     <hr/>
 </th:block>
 </body>

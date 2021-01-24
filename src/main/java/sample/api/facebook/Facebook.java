@@ -18,7 +18,11 @@ import sample.api.facebook.models.Profile;
 public class Facebook extends ApiBinding {
 
 	private static final String GRAPH_API_BASE_URL = "https://graph.facebook.com/v9.0";
-	
+
+	/**
+	 *
+	 * @param accessToken
+	 */
 	public Facebook(String accessToken) {
 		super(accessToken);
 	}
@@ -58,11 +62,11 @@ public class Facebook extends ApiBinding {
 	 * @param accessToken
 	 * @return
 	 */
-	public List<Conversation> getConversations(String accessToken){
+	public ConversationsList getConversations(String accessToken){
 		HttpHeaders headers = new HttpHeaders();
 		headers.put(HttpHeaders.AUTHORIZATION, Arrays.asList("Bearer " + accessToken));
 		HttpEntity<String> httpEntity = new HttpEntity<>(headers);
-		return restTemplateBIs.exchange(GRAPH_API_BASE_URL+ "/me/conversations?fields=id,snippet,senders,unread_count", HttpMethod.GET, httpEntity, ConversationsList.class).getBody().getData();
+		return restTemplateBIs.exchange(GRAPH_API_BASE_URL+ "/me/conversations?fields=id,snippet,senders,unread_count", HttpMethod.GET, httpEntity, ConversationsList.class).getBody();
 
 	}
 

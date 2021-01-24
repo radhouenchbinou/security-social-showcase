@@ -9,11 +9,13 @@
 <body>
 
 
-<th:block th:each="message : ${messages}">
+<th:block th:each="message : ${messages.getData()}">
     <h4 th:text="${message.from.getName()}">ID</h4>
     <p th:text="${message.message}">MESSAGE</p>
     <p th:text="${message.created_time}">created_time</p>
     <hr/>
 </th:block>
+<a th:href="@{__${#httpServletRequest.requestURI}__/{id}(id=${messages.getPagingAfter()})}">show all conversations</a>
+
 </body>
 </html>

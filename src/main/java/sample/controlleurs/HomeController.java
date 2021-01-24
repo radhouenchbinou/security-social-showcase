@@ -16,25 +16,24 @@ public class HomeController {
 	private FacebookService facebookService;
 
 	/**
-	 * 
+	 *
+	 * @param facebookService
 	 */
-	public HomeController(FacebookService facebookService) {
+	public HomeController(FacebookService facebookService){
 		this.facebookService = facebookService;
 	}
 
 	/**
 	 *
 	 * @param model
-	 * @param facebook
 	 * @return
 	 */
 	@GetMapping("/")
-	public String home(Model model,Facebook facebook) {
+	public String home(Model model){
 
-		model.addAttribute("profile", facebook.getProfile());
+		model.addAttribute("profile", facebookService.fetchUserProfileData());
 		return "home";
 	}
-
 	/**
 	 *
 	 * @param model
@@ -45,7 +44,6 @@ public class HomeController {
 		model.addAttribute("pagesList", facebookService.fetchUserPages());
 		return "pageslist";
 	}
-
 	/**
 	 *
 	 * @param id

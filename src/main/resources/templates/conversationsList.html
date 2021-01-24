@@ -9,12 +9,13 @@
 <body>
 
 
-<th:block th:each="conversation : ${conversationsList}">
+<th:block th:each="conversation : ${conversationsList.getData()}">
     <h4 th:text="${conversation.id}">ID</h4>
     <p th:text="${conversation.snippet}">MESSAGE</p>
-    <a th:href="@{/{idPage}/conversations/{idConv}(idConv=${conversation.id},idPage=${conversation.senders.getData()[1].getId()})}"><p th:text="${conversation.senders.getData()[0].getName()}"></p></a>
+    <a th:href="@{__${#httpServletRequest.requestURI}__/{idConv}(idConv=${conversation.id})}"><p th:text="${conversation.senders.getData()[0].getName()}"></p></a>
     <p th:text="${conversation.unreadCount}">UNREAD COUNT</p>
     <hr/>
 </th:block>
+<a th:href="@{__${#httpServletRequest.requestURI}__/{id}(id=${conversationsList.getPagingAfter()})}">show all conversations</a>
 </body>
 </html>

@@ -35,7 +35,7 @@ public class ConversationsController {
     @GetMapping("/{idPage}/conversations/{idConversation}")
     public String messages(@PathVariable("idPage") String idPage, @PathVariable("idConversation") String idConversation,Model model){
         MessagesList msgList = facebookService.fetchMessages(idConversation,idPage);
-        model.addAttribute("messages", msgList.getData());
+        model.addAttribute("messages", msgList);
         return "messages";
     }
 

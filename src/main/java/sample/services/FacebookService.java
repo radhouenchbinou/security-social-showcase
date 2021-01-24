@@ -9,6 +9,7 @@ import sample.api.facebook.PagesList;
 import sample.api.facebook.models.Conversation;
 import sample.api.facebook.models.Message;
 import sample.api.facebook.models.Page;
+import sample.api.facebook.models.Profile;
 
 import java.util.List;
 
@@ -21,9 +22,17 @@ public class FacebookService {
     /**
      *
      */
-    public FacebookService(Facebook facebook) {
+    public FacebookService(Facebook facebook){
         this.facebook = facebook;
     }
+    /**
+     *
+     * @return
+     */
+    public Profile fetchUserProfileData(){
+        return facebook.getProfile();
+    }
+
     /**
      *
      * @return
@@ -31,8 +40,11 @@ public class FacebookService {
     public List<Page> fetchUserPages(){
         return facebook.getPages();
     }
+
     /**
      *
+     * @param pageId
+     * @return
      */
     public Page fetchUserPage(String pageId){
         Page page = fetchUserPages().stream().filter(p -> p.getId().equals(pageId)).findFirst().get();
@@ -44,7 +56,7 @@ public class FacebookService {
      * @param pageId
      * @return
      */
-    public List<Conversation> fetchConversations(String pageId){
+    public ConversationsList fetchConversations(String pageId){
         Page page = fetchUserPages().stream().filter(p -> p.getId().equals(pageId)).findFirst().get();
         return facebook.getConversations(page.getAccess_token());
     }

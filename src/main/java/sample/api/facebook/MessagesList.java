@@ -10,6 +10,26 @@ public class MessagesList implements Serializable {
     private List<Message> data;
     private Paging paging;
 
+    /**
+     *
+     * @return
+     */
+    public String getPagingAfter(){
+        return paging.getCursors().get("after");
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String  getPagingBefore(){
+        return paging.getCursors().get("before");
+    }
+
+    /**
+     *
+     * @return
+     */
     public Paging getPaging() {
         return paging;
     }

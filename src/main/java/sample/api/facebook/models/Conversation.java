@@ -5,6 +5,7 @@ import sample.api.facebook.models.Profile;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Vector;
 
 public class Conversation implements Serializable {
     private String id;
@@ -12,6 +13,7 @@ public class Conversation implements Serializable {
     private ProfilesList senders;
     private int unread_count;
     private Paging paging;
+
 
 
     public int getUnreadCount() {
