@@ -15,7 +15,7 @@
     <p th:text="${message.created_time}">created_time</p>
     <hr/>
 </th:block>
-<a th:href="@{__${#httpServletRequest.requestURI}__/{id}(id=${messages.getPagingAfter()})}">show all conversations</a>
-
+<a th:href="@{__${#httpServletRequest.requestURI}__?nextCursor={id}(id=${messages.getPagingAfter()})}">show next</a>
+<a th:href="@{__${#httpServletRequest.requestURI}__?prevCursor={id}(id=${messages.getPagingBefore()})}">show prev</a>
 </body>
 </html>

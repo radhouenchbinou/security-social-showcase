@@ -37,10 +37,13 @@ public class FacebookService {
      *
      * @return
      */
+    public List<Page> fetchUserPages(String nextCursor,String prevCursor){
+        return facebook.getPages(nextCursor,prevCursor);
+    }
+
     public List<Page> fetchUserPages(){
         return facebook.getPages();
     }
-
     /**
      *
      * @param pageId
@@ -56,9 +59,9 @@ public class FacebookService {
      * @param pageId
      * @return
      */
-    public ConversationsList fetchConversations(String pageId){
+    public ConversationsList fetchConversations(String pageId,String nextCursor,String prevCursor){
         Page page = fetchUserPages().stream().filter(p -> p.getId().equals(pageId)).findFirst().get();
-        return facebook.getConversations(page.getAccess_token());
+        return facebook.getConversations(page.getAccess_token(),nextCursor,prevCursor);
     }
 
     /**
@@ -67,8 +70,8 @@ public class FacebookService {
      * @param pageId
      * @return
      */
-    public MessagesList fetchMessages(String conversationId, String pageId){
+    public MessagesList fetchMessages(String conversationId, String pageId,String nextCursor,String prevCursor){
         Page page = fetchUserPages().stream().filter(p -> p.getId().equals(pageId)).findFirst().get();
-        return facebook.getMessages(conversationId, page.getAccess_token());
+        return facebook.getMessages(conversationId, page.getAccess_token(),nextCursor,prevCursor);
     }
 }

@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import sample.api.facebook.Facebook;
 import sample.services.FacebookService;
 
@@ -40,8 +41,8 @@ public class HomeController {
 	 * @return
 	 */
 	@GetMapping("/pageslist")
-	public String pageslist(Model model){
-		model.addAttribute("pagesList", facebookService.fetchUserPages());
+	public String pageslist(Model model, @RequestParam(name = "nextCursor",defaultValue ="last") String nextCursor, @RequestParam(name = "prevCursor",defaultValue ="first") String prevCursor){
+		model.addAttribute("pagesList", facebookService.fetchUserPages(nextCursor,prevCursor));
 		return "pageslist";
 	}
 	/**

@@ -44,6 +44,14 @@ public class Facebook extends ApiBinding {
 		return restTemplate.getForObject(GRAPH_API_BASE_URL + "/me/accounts", PagesList.class).getData();
 	}
 
+	public List<Page> getPages(String nextCursor,String prevCursor){
+		if (prevCursor.equals("first") && nextCursor.equals("last"))
+			return restTemplate.getForObject(GRAPH_API_BASE_URL + "/me/accounts", PagesList.class).getData();
+		else if(!nextCursor.equals("last"))
+			return restTemplate.getForObject(GRAPH_API_BASE_URL + "/me/accounts?after="+nextCursor, PagesList.class).getData();
+		return restTemplate.getForObject(GRAPH_API_BASE_URL + "/me/accounts?before="+prevCursor, PagesList.class).getData();
+	}
+
 	/**
 	 *
 	 * @param accessToken
@@ -62,11 +70,16 @@ public class Facebook extends ApiBinding {
 	 * @param accessToken
 	 * @return
 	 */
-	public ConversationsList getConversations(String accessToken){
+	public ConversationsList getConversations(String accessToken,String nextCursor,String prevCursor){
 		HttpHeaders headers = new HttpHeaders();
 		headers.put(HttpHeaders.AUTHORIZATION, Arrays.asList("Bearer " + accessToken));
 		HttpEntity<String> httpEntity = new HttpEntity<>(headers);
-		return restTemplateBIs.exchange(GRAPH_API_BASE_URL+ "/me/conversations?fields=id,snippet,senders,unread_count", HttpMethod.GET, httpEntity, ConversationsList.class).getBody();
+		if (prevCursor.equals("first") && nextCursor.equals("last"))
+			return restTemplateBIs.exchange(GRAPH_API_BASE_URL+ "/me/conversations?fields=id,snippet,senders,unread_count", HttpMethod.GET, httpEntity, ConversationsList.class).getBody();
+		else if(!nextCursor.equals("last"))
+			return restTemplateBIs.exchange(GRAPH_API_BASE_URL+ "/me/conversations?fields=id,snippet,senders,unread_count&after="+nextCursor, HttpMethod.GET, httpEntity, ConversationsList.class).getBody();
+		return restTemplateBIs.exchange(GRAPH_API_BASE_URL+ "/me/conversations?fields=id,snippet,senders,unread_count&before="+prevCursor, HttpMethod.GET, httpEntity, ConversationsList.class).getBody();
+
 
 	}
 
@@ -76,11 +89,14 @@ public class Facebook extends ApiBinding {
 	 * @param accessToken
 	 * @return
 	 */
-	public MessagesList getMessages(String conversationId, String accessToken){
+	public MessagesList getMessages(String conversationId, String accessToken,String nextCursor,String prevCursor){
 		HttpHeaders headers = new HttpHeaders();
 		headers.put(HttpHeaders.AUTHORIZATION, Arrays.asList("Bearer " + accessToken));
 		HttpEntity<String> httpEntity = new HttpEntity<>(headers);
+		if (prevCursor.equals("first")&&nextCursor.equals("last"))
 		return restTemplateBIs.exchange(GRAPH_API_BASE_URL+ "/"+conversationId+"/messages?fields=from,message,created_time", HttpMethod.GET, httpEntity, MessagesList.class).getBody();
+		else if(!nextCursor.equals("last")) return restTemplateBIs.exchange(GRAPH_API_BASE_URL+ "/"+conversationId+"/messages?fields=from,message,created_time&after="+nextCursor, HttpMethod.GET, httpEntity, MessagesList.class).getBody();
+		return restTemplateBIs.exchange(GRAPH_API_BASE_URL+ "/"+conversationId+"/messages?fields=from,message,created_time&before="+prevCursor, HttpMethod.GET, httpEntity, MessagesList.class).getBody();
 	}
 
 }
