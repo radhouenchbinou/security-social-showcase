@@ -33,7 +33,7 @@ public class Facebook extends ApiBinding {
 	 */
 	public Profile getProfile() {
 
-		return restTemplate.getForObject(GRAPH_API_BASE_URL + "/me", Profile.class);
+		return restTemplate.getForObject(GRAPH_API_BASE_URL + "/me?fields=id,name,picture", Profile.class);
 	}
 
 	/**
@@ -46,10 +46,10 @@ public class Facebook extends ApiBinding {
 
 	public List<Page> getPages(String nextCursor,String prevCursor){
 		if (prevCursor.equals("first") && nextCursor.equals("last"))
-			return restTemplate.getForObject(GRAPH_API_BASE_URL + "/me/accounts", PagesList.class).getData();
+			return restTemplate.getForObject(GRAPH_API_BASE_URL + "/me/accounts?fields=picture,access_token,id,name", PagesList.class).getData();
 		else if(!nextCursor.equals("last"))
-			return restTemplate.getForObject(GRAPH_API_BASE_URL + "/me/accounts?after="+nextCursor, PagesList.class).getData();
-		return restTemplate.getForObject(GRAPH_API_BASE_URL + "/me/accounts?before="+prevCursor, PagesList.class).getData();
+			return restTemplate.getForObject(GRAPH_API_BASE_URL + "/me/accounts?fields=picture,access_token,id,name&after="+nextCursor, PagesList.class).getData();
+		return restTemplate.getForObject(GRAPH_API_BASE_URL + "/me/accounts?fields=picture,access_token,id,name&before="+prevCursor, PagesList.class).getData();
 	}
 
 	/**

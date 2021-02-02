@@ -9,6 +9,7 @@ public class Profile implements Serializable {
 
 	private String id;
 	private String name;
+	private Picture picture;
 
 
 
@@ -26,5 +27,17 @@ public class Profile implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Picture getPicture() {
+		return picture;
+	}
+
+	public void setPicture(Picture picture) {
+		this.picture = picture;
+	}
+
+	public String getPicUrl(){
+		return picture.getPicUrl();
 	}
 }

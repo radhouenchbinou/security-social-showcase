@@ -9,15 +9,8 @@ public class Page implements Serializable {
     private String id;
     private String name;
     private String access_token;
-    private String picture;
+    private Picture picture;
 
-    public String getPicture() {
-        return picture;
-    }
-
-    public void setPicture(String picture) {
-        this.picture = picture;
-    }
 
     public String getAccess_token() {
         return access_token;
@@ -42,4 +35,10 @@ public class Page implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+    public Picture getPicture() { return picture; }
+
+    public void setPicture(Picture picture) {this.picture = picture;}
+
+    public String getPicUrl(){return picture.getPicUrl();}
 }

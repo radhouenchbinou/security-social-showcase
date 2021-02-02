@@ -7,8 +7,10 @@
 	</head>
 	
 	<body>
-	
-		<h2>This Facebook pages belongs to <span th:text="${profile.name}">NAME</span></h2>
+	<img th:src="${profile.getPicUrl()}"/>
+
+	<h2>This Facebook pages belongs to <span th:text="${profile.name}">NAME</span></h2>
+
 		<a href="/pageslist">show all pages</a>
 
 	</body>

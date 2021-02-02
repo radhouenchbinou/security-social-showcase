@@ -10,10 +10,9 @@
 
 
 <th:block th:each="conversation : ${conversationsList.getData()}">
-    <h4 th:text="${conversation.id}">ID</h4>
     <p th:text="${conversation.snippet}">MESSAGE</p>
     <a th:href="@{__${#httpServletRequest.requestURI}__/{idConv}(idConv=${conversation.id})}"><p th:text="${conversation.senders.getData()[0].getName()}"></p></a>
-    <p th:text="${conversation.unreadCount}" style="color: red">UNREAD COUNT</p>
+    <p th:text="${conversation.unreadCount}" th:style="${conversation.unreadCount==0 ? 'color : black' : 'color : red'}">UNREAD COUNT</p>
     <hr/>
 </th:block>
 </body>

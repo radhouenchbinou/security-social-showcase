@@ -10,6 +10,7 @@
 
 
 <th:block th:each="page : ${pagesList}">
+    <img th:src="${page.getPicUrl()}"/>
     <a th:href="@{/{id}/conversations(id=${page.id})}"><p th:text="${page.name}">MESSAGE</p></a>
     <hr/>
 </th:block>
